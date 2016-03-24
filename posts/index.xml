@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on TestBlog</title>
+    <link>http://104.155.49.77/posts/</link>
+    <description>Recent content in Posts on TestBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Copyright (c) 2015, Laurent Marshall; all rights reserved.</copyright>
+    <lastBuildDate>Thu, 11 Feb 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://104.155.49.77/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Building a Blog with Docker &amp; Hugo, Part 2</title>
+      <link>http://104.155.49.77/posts/building-a-blog-with-docker-and-hugo-part2-2016-02-11/</link>
+      <pubDate>Thu, 11 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://104.155.49.77/posts/building-a-blog-with-docker-and-hugo-part2-2016-02-11/</guid>
+      <description>
+
+&lt;p&gt;I got started with Linux about a year ago when a colleague recommended trying Ubuntu as an alternative to Windows. So far, I&amp;rsquo;ve gained basic competency in the terminal, and acquired a working knowledge of the operating system. I&amp;rsquo;ve experimented quite a bit with different Linux distributions in Virtual Box - installing and configuring Arch Linux was a great learning experience. But, I think working at an IT company (my role is not technical) and constantly being around web developers and devops engineers was what really got me interested in computing, and pushed me to do a lot more than I otherwise would have - like studying Python, and deploying this site.&lt;/p&gt;
+
+&lt;h4 id=&#34;settling-on-a-solution:57282d80281252879f13a5f930cb892b&#34;&gt;Settling on a solution&lt;/h4&gt;
+
+&lt;p&gt;There are a lot of ways to host a static site, but I wanted to do it with Docker. Docker has a few advantages that make it very attractive for many different use cases, but most importantly, container-ized services are really easy to deploy from one linux environments to another. For my purposes, this means I can easily launch my site on a variety of platforms -  as long as Docker is installed:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker build .
+
+$ docker run -d -p 80:80 image_name
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first command builds a docker image using instructions from a Dockerfile; the second launches a pre-configured container serving my site the instant it goes up.&lt;/p&gt;
+
+&lt;h6 id=&#34;building-the-site:57282d80281252879f13a5f930cb892b&#34;&gt;Building the site&lt;/h6&gt;
+
+&lt;p&gt;I don&amp;rsquo;t really know my way around html, css, or javascript, so there was no way I was going to build my own site from scratch in a reasonable amount of time. So, I decided to use a static site generator. There are a lot of static site generators out there at the moment, so I sort of arbitrarily picked Hugo. It&amp;rsquo;s written in go, generates pages very quickly, and has it&amp;rsquo;s own web server (no need for Nginx or Apache, unless you want some more advanced features).&lt;/p&gt;
+
+&lt;p&gt;Hugo uses a config file like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;baseurl = &amp;quot;http://localhost/&amp;quot;
+title = &amp;quot;TestBlog&amp;quot;
+author = &amp;quot;Laurent Marshall&amp;quot;
+copyright = &amp;quot;Copyright (c), Laurent Marshall; all rights reserved.&amp;quot;
+[params]
+	sidebartitle = &amp;quot;TestBlog&amp;quot;
+	sidebartagline = &amp;quot;This is a Test&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And generates pages from text files with a .toml, .json, or .yaml header. You only need markdwon to format the rest of your post:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;+++
+date = &amp;quot;2016-02-10&amp;quot;
+title = &amp;quot;Title&amp;quot;
+tags = [&amp;quot;Hugo&amp;quot;, &amp;quot;Docker&amp;quot;]
++++
+
+Your text here.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All you need to do is set up a directory tree of folders for the pages you want, and place your content in them; Hugo does the rest.&lt;/p&gt;
+
+&lt;h4 id=&#34;building-a-docker-image:57282d80281252879f13a5f930cb892b&#34;&gt;Building a Docker image&lt;/h4&gt;
+
+&lt;p&gt;Docker uses what is called a Dockerfile to create images with pre-installed and configured software. I decided to base mine on Alpine Linux, since it&amp;rsquo;s quite compact. Here is the Dockerfile I developed:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Inspired by ilkka.io/blog/static-sites-with-docker/ 
+# and www.mrsinham.net/create-a-blog-in-2-min/
+
+FROM alpine
+
+MAINTAINER Laurent Marshall
+
+# Install necessary packages:
+
+RUN apk --no-cache add git
+
+# The following packages are only necessary to build the docker image and 
+# will be purged later:
+
+RUN apk --no-cache add --virtual build-dependencies curl
+
+# If you want more advanced text features you can use the following commands to install pygments:
+
+#RUN apk --no-cache add python git
+#RUN apk --no-cache add --virtual build-dependencies python-dev py-pip build-base curl
+#RUN pip install pygments
+
+ENV HUGO_VERSION 0.15
+ENV HUGO_BINARY hugo_${HUGO_VERSION}_linux_amd64
+ENV HUGO_BASEURL http://localhost/
+
+RUN mkdir /blog
+WORKDIR /blog
+
+RUN curl -L https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/${HUGO_BINARY}.tar.gz &amp;gt; /usr/local/${HUGO_BINARY}.tar.gz \
+	&amp;amp;&amp;amp; tar -xzf /usr/local/${HUGO_BINARY}.tar.gz -C /usr/local/ \
+	&amp;amp;&amp;amp; ln -s /usr/local/${HUGO_BINARY}/${HUGO_BINARY} /usr/local/bin/hugo \
+	&amp;amp;&amp;amp; rm /usr/local/${HUGO_BINARY}.tar.gz
+
+RUN apk del build-dependencies
+
+RUN hugo new site .
+
+RUN rm -rf ./content config.toml
+RUN git init
+RUN git remote add origin https://github.com/LEMarshall/blog.git
+RUN git pull origin master
+
+RUN git clone https://github.com/allnightgrocery/hugo-theme-blueberry-detox.git /blog/themes/detox
+
+EXPOSE 80
+
+# start.sh script from www.mrsinham.net/create-a-blog-in-2-min/ - syncs site content with github repository
+# and launches hugo server:
+
+ADD start.sh /start.sh
+
+RUN chmod +x /start.sh
+
+ENTRYPOINT /start.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you&amp;rsquo;re interested in reading more about Hugo and Docker, and taking a look at the Dockerfiles which I based mine on, have a look at &lt;a href=&#34;ilkka.io/blog/static-sites-with-docker/&#34;&gt;this&lt;/a&gt; and &lt;a href=&#34;www.mrsinham.net/create-a-blog-in-2-min/&#34;&gt;this&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Basically, my Dockerfile borrows an Alpine Linux + Hugo configuration from the first source, and a process for automatic updates using git and github from the second.&lt;/p&gt;
+
+&lt;p&gt;The following script launches Hugo Server, and sets it to watch the file system for changes. Meanwhile, git pulls changes from the repository every 60 seconds, and Hugo rebuilds the site and incorporates anything new:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/sh
+
+hugo server -t detox -b=$HUGO_BASEURL -s /blog -p 80 --bind=0.0.0.0 --watch --disableLiveReload &amp;amp;
+
+cd /blog/
+while true; do
+    git pull origin master
+    sleep 60
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;deployment:57282d80281252879f13a5f930cb892b&#34;&gt;Deployment&lt;/h4&gt;
+
+&lt;p&gt;I haven&amp;rsquo;t decided if I will permanently host this blog anywhere yet, but I have deployed it on a CoreOS instance (which has Docker pre-installed) on google cloud. Once I had a working docker image, hosting the site itself was super easy - &amp;ldquo;docker build .&amp;rdquo; &amp;ldquo;docker run &amp;hellip;&amp;rdquo; and that was all there was to it. To add content I only need to push new posts to my github repository and they appear on the site within a minute.&lt;/p&gt;
+
+&lt;p&gt;Logical next steps would include getting a domain name and leaving the Docker container with the site running on a server. I also need to get a handle on markdown language and learn about more about Hugo, and the features available with my chosen theme.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Building a Blog with Docker and Hugo</title>
+      <link>http://104.155.49.77/posts/building-a-blog-with-docker-and-hugo-2016-02-10/</link>
+      <pubDate>Wed, 10 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://104.155.49.77/posts/building-a-blog-with-docker-and-hugo-2016-02-10/</guid>
+      <description>&lt;p&gt;After hearing and reading about &lt;a href=&#34;https://www.docker.com&#34;&gt;Docker&lt;/a&gt;, I decided to try building a static blog on my own as a learning experience.&lt;/p&gt;
+
+&lt;p&gt;I decided to use &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt; to generate and serve my blog, and I used a short script with git to automatically post updates. Due to its compact size, &lt;a href=&#34;www.alpinelinux.org&#34;&gt;Alpine Linux&lt;/a&gt; was a good base for my docker image.&lt;/p&gt;
+
+&lt;p&gt;You can check out the Dockerfile I developed on &lt;a href=&#34;https://github.com/LEMarshall/blog&#34;&gt;github&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Test Post</title>
+      <link>http://104.155.49.77/posts/test_post/</link>
+      <pubDate>Wed, 10 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://104.155.49.77/posts/test_post/</guid>
+      <description>&lt;p&gt;Testing Hugo static site generator on Alpine Linux in Docker container.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
