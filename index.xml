@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>TestBlog</title>
-    <link>http://104.155.49.77/</link>
+    <link>LEMarshall.github.io/</link>
     <description>Recent content on TestBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright (c) 2015, Laurent Marshall; all rights reserved.</copyright>
     <lastBuildDate>Thu, 11 Feb 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://104.155.49.77/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="LEMarshall.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Building a Blog with Docker &amp; Hugo, Part 2</title>
-      <link>http://104.155.49.77/posts/building-a-blog-with-docker-and-hugo-part2-2016-02-11/</link>
+      <link>/LEMarshall.github.io/posts/building-a-blog-with-docker-and-hugo-part2-2016-02-11/</link>
       <pubDate>Thu, 11 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://104.155.49.77/posts/building-a-blog-with-docker-and-hugo-part2-2016-02-11/</guid>
+      <guid>/LEMarshall.github.io/posts/building-a-blog-with-docker-and-hugo-part2-2016-02-11/</guid>
       <description>
 
 &lt;p&gt;I got started with Linux about a year ago when a colleague recommended trying Ubuntu as an alternative to Windows. So far, I&amp;rsquo;ve gained basic competency in the terminal, and acquired a working knowledge of the operating system. I&amp;rsquo;ve experimented quite a bit with different Linux distributions in Virtual Box - installing and configuring Arch Linux was a great learning experience. But, I think working at an IT company (my role is not technical) and constantly being around web developers and devops engineers was what really got me interested in computing, and pushed me to do a lot more than I otherwise would have - like studying Python, and deploying this site.&lt;/p&gt;
@@ -146,10 +146,10 @@ done
     
     <item>
       <title>Building a Blog with Docker and Hugo</title>
-      <link>http://104.155.49.77/posts/building-a-blog-with-docker-and-hugo-2016-02-10/</link>
+      <link>/LEMarshall.github.io/posts/building-a-blog-with-docker-and-hugo-2016-02-10/</link>
       <pubDate>Wed, 10 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://104.155.49.77/posts/building-a-blog-with-docker-and-hugo-2016-02-10/</guid>
+      <guid>/LEMarshall.github.io/posts/building-a-blog-with-docker-and-hugo-2016-02-10/</guid>
       <description>&lt;p&gt;After hearing and reading about &lt;a href=&#34;https://www.docker.com&#34;&gt;Docker&lt;/a&gt;, I decided to try building a static blog on my own as a learning experience.&lt;/p&gt;
 
 &lt;p&gt;I decided to use &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt; to generate and serve my blog, and I used a short script with git to automatically post updates. Due to its compact size, &lt;a href=&#34;www.alpinelinux.org&#34;&gt;Alpine Linux&lt;/a&gt; was a good base for my docker image.&lt;/p&gt;
@@ -160,10 +160,10 @@ done
     
     <item>
       <title>Test Post</title>
-      <link>http://104.155.49.77/posts/test_post/</link>
+      <link>/LEMarshall.github.io/posts/test_post/</link>
       <pubDate>Wed, 10 Feb 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://104.155.49.77/posts/test_post/</guid>
+      <guid>/LEMarshall.github.io/posts/test_post/</guid>
       <description>&lt;p&gt;Testing Hugo static site generator on Alpine Linux in Docker container.&lt;/p&gt;
 </description>
     </item>
