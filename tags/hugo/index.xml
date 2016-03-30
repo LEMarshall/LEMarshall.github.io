@@ -6,8 +6,22 @@
     <description>Recent content in Hugo on TestBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright (c) 2015, Laurent Marshall; all rights reserved.</copyright>
-    <lastBuildDate>Thu, 11 Feb 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 30 Mar 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="LEMarshall.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Hosting my Hugo blog on Github Pages</title>
+      <link>/LEMarshall.github.io/posts/hosting-my-hugo-blog-on-github-pages-2016-03-30/</link>
+      <pubDate>Wed, 30 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/LEMarshall.github.io/posts/hosting-my-hugo-blog-on-github-pages-2016-03-30/</guid>
+      <description>&lt;p&gt;After initially hosting my blog on a virtual machine instance on Google Cloud, I had other things to do and took my time getting around to finding an alternate hosting solution. Since I still don&amp;rsquo;t have a lot of time, I decided to try Github Pages - it sounded pretty simple, and in fact it is.&lt;/p&gt;
+
+&lt;p&gt;I followed a &lt;a href=&#34;https://gohugo.io/tutorials/github-pages-blog/&#34;&gt;tutorial on the Hugo site&lt;/a&gt;, but didn&amp;rsquo;t go quite as far with configuring the git repository - I&amp;rsquo;m just running Hugo and committing changes to make updates. At some point I may want to make this automated, we&amp;rsquo;ll see.&lt;/p&gt;
+
+&lt;p&gt;For the meantime Github Pages seems like a good way to go - it&amp;rsquo;s free, and easy to use.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Building a Blog with Docker &amp; Hugo, Part 2</title>
