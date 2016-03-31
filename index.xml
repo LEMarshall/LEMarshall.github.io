@@ -10,16 +10,16 @@
     <atom:link href="LEMarshall.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Hosting my Hugo blog on Github Pages</title>
+      <title>Hosting my Hugo Blog on Github Pages</title>
       <link>/LEMarshall.github.io/posts/hosting-my-hugo-blog-on-github-pages-2016-03-30/</link>
       <pubDate>Wed, 30 Mar 2016 00:00:00 +0000</pubDate>
       
       <guid>/LEMarshall.github.io/posts/hosting-my-hugo-blog-on-github-pages-2016-03-30/</guid>
-      <description>&lt;p&gt;After initially hosting my blog on a virtual machine instance on Google Cloud, I had other things to do and took my time getting around to finding an alternate hosting solution. Since I still don&amp;rsquo;t have a lot of time, I decided to try Github Pages - it sounded pretty simple, and in fact it is.&lt;/p&gt;
+      <description>&lt;p&gt;After initially hosting my blog on a virtual machine instance on Google Cloud, I got busy with other things and took my time getting around to finding an alternative hosting solution. The virtual machine instance was a bit too expensive for just hosting a blog when cheaper (or free!) options exist, considering my free trial on Google Cloud ran out. Since I still don&amp;rsquo;t have a whole lot of time for this project, I decided to try &lt;a href=&#34;https://pages.github.com&#34;&gt;Github Pages&lt;/a&gt;, it sounded pretty simple, and in fact it is.&lt;/p&gt;
 
-&lt;p&gt;I followed a &lt;a href=&#34;https://gohugo.io/tutorials/github-pages-blog/&#34;&gt;tutorial on the Hugo site&lt;/a&gt;, but didn&amp;rsquo;t go quite as far with configuring the git repository - I&amp;rsquo;m just running Hugo and committing changes to make updates. At some point I may want to make this automated, we&amp;rsquo;ll see.&lt;/p&gt;
+&lt;p&gt;Github Pages is a free service for hosting static sites, all you really need to do is create a repository and upload your site. Since I wanted to use &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt; to generate my site I roughly followed their &lt;a href=&#34;https://gohugo.io/tutorials/github-pages-blog/&#34;&gt;tutorial&lt;/a&gt; for hosting on Github Pages. I didn&amp;rsquo;t go as far with configuring Git workflow, and at some point I may still want to make this more automated. At the moment I&amp;rsquo;m updating by running Hugo to generate pages for new content and pushing the files to my github repository.&lt;/p&gt;
 
-&lt;p&gt;For the meantime Github Pages seems like a good way to go - it&amp;rsquo;s free, and easy to use.&lt;/p&gt;
+&lt;p&gt;Github Pages seems like a good way to go, it&amp;rsquo;s free, and fairly easy to use.&lt;/p&gt;
 </description>
     </item>
     
