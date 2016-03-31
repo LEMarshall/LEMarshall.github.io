@@ -181,5 +181,21 @@ done
 </description>
     </item>
     
+    <item>
+      <title>About this Blog</title>
+      <link>/LEMarshall.github.io/about/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/LEMarshall.github.io/about/about/</guid>
+      <description>&lt;p&gt;Hi, I&amp;rsquo;m Laurent Marshall. I&amp;rsquo;m a former U.S. Peace Corps volunteer (Ukraine, 2010-2013) currently working at an &lt;a href=&#34;https://dtm.io&#34;&gt;IT company&lt;/a&gt; in customer relations and marketing. I initially created this blog as a way to experiment with &lt;a href=&#34;www.docker.com&#34;&gt;Docker&lt;/a&gt; and the static site generator/web server &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt;, and just called it &amp;ldquo;TestBlog&amp;rdquo; in the config file. It will probably stay that way unless I can think of something better (I have my doubts).&lt;/p&gt;
+
+&lt;p&gt;Over the last year or so I&amp;rsquo;ve become more interested in IT, computing, and programming. At the moment I&amp;rsquo;m doing my best to learn more about Linux systems administration and devops as spare time allows, but I&amp;rsquo;ve also dabbled in Python programming and Go(lang). Beyond IT, my interests are wide and varied and you may see some non-IT themed posts from time to time.&lt;/p&gt;
+
+&lt;p&gt;You can find me on &lt;a href=&#34;https://ua.linkedin.com/laurent-marshall-36225919&#34;&gt;LinkedIn&lt;/a&gt; or &lt;a href=&#34;https://github.com/LEMarshall&#34;&gt;Github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you like fishing and the outdoors, check out my previous blogging project from way back in 2010: &lt;a href=&#34;tenkaraaadventurer.blogspot.com&#34;&gt;Tenkara Adventurer&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>
