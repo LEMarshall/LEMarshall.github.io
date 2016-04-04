@@ -172,16 +172,6 @@ done
     </item>
     
     <item>
-      <title>Test Post</title>
-      <link>/LEMarshall.github.io/posts/test_post/</link>
-      <pubDate>Wed, 10 Feb 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/LEMarshall.github.io/posts/test_post/</guid>
-      <description>&lt;p&gt;Testing Hugo static site generator on Alpine Linux in Docker container.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Blogging on IT Topics and More</title>
       <link>/LEMarshall.github.io/about/about/</link>
       <pubDate>Tue, 09 Feb 2016 00:00:00 +0000</pubDate>
